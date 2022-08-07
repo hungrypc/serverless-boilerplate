@@ -3,7 +3,7 @@ import { APIGatewayProxyEvent, Context } from 'aws-lambda'
 import { DeepPartial } from '@app/ts-utils'
 
 import { restApi } from './default-config'
-import { eventBridgeFunction, prefixedRestApiProxyFunction, s3EventFunction } from './default-config/functions'
+import { eventBridgeFunction, prefixedRestApiProxyFunction } from './default-config/functions'
 import { Serverless } from './types'
 import { merge } from './utils'
 
@@ -24,18 +24,11 @@ type EventBridgeHandler = {
   }[]
 }
 
-type S3EventHandler = {
-  handler: GenericHandler
-  eventTypes: string[]
-  bucketName: string
-}
-
 export const generateServerlessRestApiConfig = ({
   stage,
   serviceName,
   apiHandlers,
   eventBridgeHandler,
-  s3EventHandler,
   functionFilePath = 'dist/index',
   monitored,
   ...other
@@ -44,7 +37,6 @@ export const generateServerlessRestApiConfig = ({
   serviceName: string
   apiHandlers?: ApiHandlers
   eventBridgeHandler?: EventBridgeHandler
-  s3EventHandler?: S3EventHandler
   functionFilePath?: string
   monitored?: boolean
 } & DeepPartial<Serverless>): Serverless => {
@@ -69,21 +61,11 @@ export const generateServerlessRestApiConfig = ({
       })
     : {}
 
-  const s3EventFunctions = s3EventHandler
-    ? s3EventFunction({
-        functionName: 's3EventHandler',
-        handler: `${functionFilePath}.s3EventHandler`,
-        eventTypes: s3EventHandler.eventTypes,
-        bucketName: s3EventHandler.bucketName,
-      })
-    : {}
-
   return merge(restApi({ serviceName, stage, monitored }), [
     {
       functions: {
         ...apiFunctions,
         ...eventBridgeFunctions,
-        ...s3EventFunctions,
       },
     },
     other,
