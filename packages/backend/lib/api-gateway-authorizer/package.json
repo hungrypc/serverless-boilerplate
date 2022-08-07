@@ -1,0 +1,22 @@
+{
+  "name": "@app/api-gateway-authorizer",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -b .",
+    "predeploy": "yarn build",
+    "deploy": "serverless deploy --stage=${STAGE}",
+    "prestart": "yarn build",
+    "start": "cli serverless offline start --stage=${STAGE} --httpPort 5000"
+  },
+  "dependencies": {
+    "@app/jwt": "1.0.0",
+    "@app/serverless-function": "1.0.0",
+    "@app/serverless-framework": "1.0.0",
+    "aws-lambda": "^1.0.7"
+  }
+}

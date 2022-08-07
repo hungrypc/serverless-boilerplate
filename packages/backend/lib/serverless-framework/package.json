@@ -1,0 +1,16 @@
+{
+  "name": "@app/serverless-framework",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -b ."
+  },
+  "dependencies": {
+    "@app/lodash": "1.0.0",
+    "@app/ts-utils": "1.0.0"
+  }
+}

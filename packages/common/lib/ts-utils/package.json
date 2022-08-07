@@ -1,0 +1,15 @@
+{
+  "name": "@app/ts-utils",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -b ."
+  },
+  "dependencies": {
+    "ts-essentials": "^9.2.0"
+  }
+}

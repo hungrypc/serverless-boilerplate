@@ -1,0 +1,17 @@
+{
+  "name": "@app/serverless-function",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -b ."
+  },
+  "dependencies": {
+    "@app/common": "1.0.0",
+    "@types/aws-lambda": "^8.10.101",
+    "aws-lambda": "^1.0.7"
+  }
+}

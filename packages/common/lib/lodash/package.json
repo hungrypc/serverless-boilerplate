@@ -1,0 +1,16 @@
+{
+  "name": "@app/lodash",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -b ."
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "slugify": "^1.6.5"
+  }
+}

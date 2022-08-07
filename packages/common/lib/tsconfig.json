@@ -1,0 +1,11 @@
+{
+  "extends": "../../../tsconfig.json",
+  "files": [],
+  "references": [
+    { "path": "./common" },
+    { "path": "./jwt" },
+    { "path": "./lodash" },
+    { "path": "./ts-utils" },
+    { "path": "./yup-util" }
+  ]
+}

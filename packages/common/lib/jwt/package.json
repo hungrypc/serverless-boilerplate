@@ -1,0 +1,16 @@
+{
+  "name": "@app/jwt",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -b ."
+  },
+  "dependencies": {
+    "@app/common": "1.0.0",
+    "jsonwebtoken": "^8.5.1"
+  }
+}

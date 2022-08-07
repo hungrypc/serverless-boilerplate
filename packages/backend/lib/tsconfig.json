@@ -1,0 +1,9 @@
+{
+  "extends": "../../../tsconfig.json",
+  "files": [],
+  "references": [
+    { "path": "./serverless-framework" },
+    { "path": "./serverless-function" },
+    { "path": "./serverless-rest-api-router" }
+  ]
+}

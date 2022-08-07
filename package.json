@@ -1,0 +1,69 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "serverless boilerplate: backend",
+  "author": "hungrypc<philipchanhk626@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "aws",
+    "serverless",
+    "monorepo"
+  ],
+  "workspaces": {
+    "packages": [
+      "packages/**"
+    ]
+  },
+  "scripts": {
+    "build": "yarn tsc -b ./packages/tsconfig.json",
+    "build:watch": "yarn build --watch",
+    "build:clean": "yarn clean:ts && yarn build",
+    "clean": "yarn clean:ts",
+    "clean:all": "yarn run clean:ts && yarn clean:test && clean:serverless && yarn clean:deps",
+    "clean:deps": "(globstar --node -- rm -fr packages/**/node_modules) && (rm -fr node_modules)",
+    "clean:ts": "yarn build --clean",
+    "deploy": "",
+    "lint:base": "eslint --config .eslintrc.js --cache",
+    "lint:check": "yarn lint:base \"./**/*.{ts,tsx}\"",
+    "lint:fix": "eslint --fix . --ignore-path ./.gitignore",
+    "prettier:check": "prettier  --config ./.prettierrc.js --check \"./**/*\"",
+    "prettier:fix": "yarn prettier:check --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --ignore-path ./.gitignore"
+  },
+  "devDependencies": {
+    "@serverless/cli": "^1.6.0",
+    "@serverless/typescript": "^3.21.0",
+    "@types/aws-lambda": "^8.10.101",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/node": "18.6.4",
+    "@types/serverless": "^3.12.8",
+    "@types/uuid": "^8.3.4",
+    "@types/yup": "^0.29.14",
+    "@typescript-eslint/eslint-plugin": "^5.32.0",
+    "@typescript-eslint/parser": "^5.32.0",
+    "eslint": "8.21.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "serverless": "^3.21.0",
+    "serverless-bundle": "^5.4.0",
+    "serverless-offline": "^9.1.6",
+    "serverless-plugin-monorepo": "^0.11.0",
+    "ts-node": "^10.9.1",
+    "typescript": "4.7.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn build && yarn gcli on-workspace-dirty",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "./**/*.{js,jsx,ts,tsx}": [
+      "yarn lint:fix"
+    ]
+  }
+}

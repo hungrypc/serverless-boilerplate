@@ -1,0 +1,21 @@
+{
+  "name": "@app/serverless-rest-api-router",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -b ."
+  },
+  "dependencies": {
+    "@app/common": "1.0.0",
+    "@app/lodash": "1.0.0",
+    "@app/serverless-function": "1.0.0",
+    "aws-lambda": "^1.0.7",
+    "aws-sdk": "^2.1189.0",
+    "path-to-regexp": "^6.2.1",
+    "uuid": "^8.3.2"
+  }
+}
