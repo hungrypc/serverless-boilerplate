@@ -1,16 +1,20 @@
 # serverless boilerplate: backend
 
-boilerplate for monorepo, though only the backend (+ common folder to share types between FE and BE)
+personal boilerplate for a monorepo, but only the backend impl. (+ common folder to share types between FE and BE if FE is added in later on)
 
-serverless to deploy to aws, made with (event-driven) microservice architecture in mind, infrastructure as code
+made with (event-driven) microservice architecture in mind, iac
 
-use to create an api (via cloudformation) utilizing api-gateway to handle and auth requests that are then sent to various service lambdas generated from [`generateServerlessRestApiConfig`](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/serverless-framework/src/generate-serverless-config.ts)
+to be used set up an api (for personal use rn so everything is set up to play around with on my own domain)
 
-makes use of (yarn) workspaces for packages
+- aws-cdk to build initial infrastructure (api-gateway, event-bus, dns certificate)
+- serverless to deploy:
+  + custom api-gateway authorizer to handle authenticating requests
+  + lambdas generated via [`generateServerlessRestApiConfig`](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/serverless-framework/src/generate-serverless-config.ts) for service logic
 
 ## stack
 
 - [ts](https://www.typescriptlang.org/)
+- [aws-cdk](https://github.com/aws/aws-cdk)
 - [serverless](https://www.serverless.com/)
 
 ## todo
@@ -20,3 +24,8 @@ makes use of (yarn) workspaces for packages
 - dynamodb?
 - simplify pls
 - add testing
+
+## notes
+
+- set up infrastructure with aws-cdk first, then use serverless to deploy services
+- ssm paramstore

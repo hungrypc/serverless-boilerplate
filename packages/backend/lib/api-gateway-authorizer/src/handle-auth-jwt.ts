@@ -8,8 +8,11 @@ import { BasePolicy, generateBasePolicy } from './api-gateway-policy'
 
 export interface JwtApiGatewayPolicy extends BasePolicy {}
 
-export const generateJwtPolicy = (effect: string): JwtApiGatewayPolicy => {
-  return generateBasePolicy(effect)
+export const generateJwtPolicy = (effect: string) => {
+  return {
+    ...generateBasePolicy(effect),
+    principalId: 'jwt',
+  }
 }
 
 export const verifyJwtAuthenticationAndGetPolicy = async (
