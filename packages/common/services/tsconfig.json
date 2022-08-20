@@ -2,6 +2,6 @@
   "extends": "../../../tsconfig.json",
   "files": [],
   "references": [
-    { "path": "./iac" }
+    { "path": "./user" },
   ]
 }

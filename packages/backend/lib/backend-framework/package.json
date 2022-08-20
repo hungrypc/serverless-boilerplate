@@ -1,0 +1,17 @@
+{
+  "name": "@app/backend-framework",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -b ."
+  },
+  "dependencies": {
+    "@app/common": "1.0.0",
+    "@app/ts-utils": "1.0.0",
+    "@app/yup-util": "1.0.0"
+  }
+}

@@ -4,7 +4,7 @@ import { xRay } from './permissions/x-ray'
 export const base = ({ stage, serviceName }: { stage: string; serviceName: string }): Serverless => {
   const result: Serverless = {
     service: serviceName,
-    plugins: ['serverless-offline', 'serverless-deployment-bucket'],
+    plugins: ['serverless-offline'],
     frameworkVersion: '3',
     package: {
       patterns: ['!./**', 'dist/**', 'node_modules/**'],

@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "predeploy:iac": "cdk --version && cdk bootstrap aws://$AWS_ACCOUNT_ID/us-east-1 --context stage=$STAGE",
-    "deploy:iac": "cdk deploy --require-approval never --context stage=$STAGE"
+    "predeploy:iac": "cdk --version && cdk --profile=personalAdmin bootstrap aws://$AWS_PERSONAL_ACCOUNT_ID/us-east-1 --context stage=$STAGE",
+    "deploy:iac": "cdk deploy --profile=personalAdmin --require-approval never --context stage=$STAGE"
   },
   "dependencies": {
     "@aws-cdk/assert": "^2.36.0",

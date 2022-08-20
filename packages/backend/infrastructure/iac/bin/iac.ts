@@ -22,7 +22,7 @@ const context: Context = {
   serviceFullName: SERVICE_FULL_NAME,
   orgName: 'philip-chan',
   region: process.env.AWS_DEFAULT_REGION || 'us-east-1',
-  account: process.env.AWS_ACCOUNT_ID as string,
+  account: process.env.AWS_PERSONAL_ACCOUNT_ID as string,
 }
 
 console.log(`Deploying infra on stack ${STACK_NAME}`)

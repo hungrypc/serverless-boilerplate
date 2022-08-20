@@ -1,0 +1,13 @@
+{
+  "extends": "../../../../tsconfig.serverless.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": ["src"],
+  "references": [
+    { "path": "../../../common/services/user" },
+    { "path": "../../../common/lib" },
+  ]
+}
