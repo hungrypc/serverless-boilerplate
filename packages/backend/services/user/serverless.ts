@@ -1,6 +1,6 @@
 import { generateServerlessRestApiConfig } from '@app/serverless-framework'
 
-import { authenticatedApi } from './src'
+import { authenticatedApi, publicApi } from './src'
 import { config } from './src/config'
 
 const serverlessConfig = generateServerlessRestApiConfig({
@@ -8,6 +8,7 @@ const serverlessConfig = generateServerlessRestApiConfig({
   serviceName: config.apiName,
   apiHandlers: {
     authenticatedApi,
+    publicApi,
   },
 })
 

@@ -1,9 +1,9 @@
 import { Args, Controller, RestApiContext, Route, ServiceReturnType } from '@app/backend-framework'
-import { AuthenticatedApi } from '@app/user-shared'
+import { PublicApi } from '@app/user-shared'
 
 import { UserService } from '../../services'
 
-const { routes } = AuthenticatedApi
+const { routes } = PublicApi
 
 export class UserController extends Controller {
   private service!: ServiceReturnType<typeof UserService, 'auth'>
@@ -13,8 +13,8 @@ export class UserController extends Controller {
     this.service = await UserService(context).then(s => s.auth())
   }
 
-  @Route(routes.testAuthApi)
-  async testApi({ payload: { userId } }: Args<typeof routes.testAuthApi>) {
-    return this.service.testApi({ userId, api: 'auth' })
+  @Route(routes.testPublicApi)
+  async testApi({ pathParams: { userId } }: Args<typeof routes.testPublicApi>) {
+    return this.service.testApi({ userId, api: 'public' })
   }
 }

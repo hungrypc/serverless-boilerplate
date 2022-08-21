@@ -4,8 +4,8 @@ export const Service = async (_context: Context) => {
   return {
     auth: async () => {
       return {
-        testApi: ({ userId }: { userId: string }) => {
-          return `GET success, ${userId}`
+        testApi: ({ userId, api }: { userId: string; api: string }) => {
+          return `${api} api test success, ${userId}`
         },
       }
     },

@@ -16,6 +16,7 @@ yarn-error.log*
 dist
 .serverless
 
+cdk.out
 _es-logs
 _serverless*
 
