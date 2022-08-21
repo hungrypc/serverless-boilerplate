@@ -6,10 +6,19 @@ made with (event-driven) microservice architecture in mind, iac
 
 to be used set up an api (for personal use rn so everything is set up to play around with on my own domain)
 
-- aws-cdk to build initial infrastructure (api-gateway, event-bus, dns certificate)
-- serverless to deploy:
-  + custom api-gateway authorizer to handle authenticating requests
-  + lambdas generated via [`generateServerlessRestApiConfig`](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/serverless-framework/src/generate-serverless-config.ts) for service logic
+- first use aws-cdk to build initial infrastructure
+  + creates event bus
+  + creates s3 deployment bucket
+  + sets up rest api on api-gateway with custom domain name mapped
+    - creates new A record for api domain, uses custom domain certificate (should be previously set up)
+- then use serverless to deploy:
+  + custom api-gateway authorizer lambda to handle authenticating requests
+  + per service lambdas generated with configurable [`generateServerlessRestApiConfig`](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/serverless-framework/src/generate-serverless-config.ts)
+
+each service can set up:
+1. authenticated api
+2. public api
+3. event bridge
 
 ## stack
 
@@ -19,13 +28,11 @@ to be used set up an api (for personal use rn so everything is set up to play ar
 
 ## todo
 
-- user auth? redis?
-- logging w cloudwatch?
-- dynamodb?
-- simplify pls
+- serverless-webpack instead of serverless-plugin-monorepo to optimize lambda packages
+- cli script to deploy all services
 - add testing
+- ci/cd?
 
 ## notes
 
-- set up infrastructure with aws-cdk first, then use serverless to deploy services
 - ssm paramstore

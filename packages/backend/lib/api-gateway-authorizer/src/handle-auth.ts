@@ -6,26 +6,26 @@ import { InvocationContext } from '@app/serverless-function'
 
 import { BasePolicy, generateBasePolicy } from './api-gateway-policy'
 
-export interface JwtApiGatewayPolicy extends BasePolicy {}
+export interface ApiGatewayPolicy extends BasePolicy {}
 
-export const generateJwtPolicy = (effect: string) => {
+export const generatePolicy = (effect: string) => {
   return {
     ...generateBasePolicy(effect),
-    principalId: 'jwt',
+    principalId: 'a',
   }
 }
 
-export const verifyJwtAuthenticationAndGetPolicy = async (
+export const verifyAuthenticationAndGetPolicy = async (
   context: InvocationContext<APIGatewayRequestAuthorizerEvent>,
-): Promise<JwtApiGatewayPolicy> => {
+): Promise<ApiGatewayPolicy> => {
   const headerToken = headerManager.authorizationBearer.parse(context.awsEvent.headers)
   const queryStringToken = context.awsEvent.queryStringParameters?.authToken
 
   const parsed = jwtClient().verify(headerToken ?? queryStringToken)
 
   if (parsed) {
-    return generateJwtPolicy('Allow')
+    return generatePolicy('Allow')
   } else {
-    return generateJwtPolicy('Deny')
+    return generatePolicy('Deny')
   }
 }

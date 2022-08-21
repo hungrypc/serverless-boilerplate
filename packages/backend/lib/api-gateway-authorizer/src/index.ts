@@ -2,13 +2,13 @@ import { APIGatewayRequestAuthorizerEvent } from 'aws-lambda'
 
 import { handlerBuilder, InvocationContext, Middleware } from '@app/serverless-function'
 
-import { verifyJwtAuthenticationAndGetPolicy } from './handle-auth-jwt'
+import { verifyAuthenticationAndGetPolicy } from './handle-auth'
 
 async function handleAuthenticationCheck(
   context: InvocationContext<APIGatewayRequestAuthorizerEvent>,
   next: Function,
 ): Promise<void> {
-  await verifyJwtAuthenticationAndGetPolicy(context)
+  await verifyAuthenticationAndGetPolicy(context)
   await next()
 }
 
