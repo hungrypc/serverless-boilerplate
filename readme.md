@@ -6,13 +6,13 @@ used to set up an api (currently for personal use rn so everything is set up to 
 
 made with (event-driven) microservice architecture in mind, iac
 
-- using aws-cdk to first build initial infrastructure
+- using aws-cdk to first build [initial infrastructure](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/infrastructure/iac/lib/iac-stack.ts)
   + creates event bus
   + creates s3 deployment bucket
   + sets up rest api on api-gateway with custom domain name mapped
     - creates new A record for api domain, uses custom domain certificate (should be previously set up)
 - then using serverless to deploy:
-  + custom api-gateway authorizer lambda to handle authenticating requests
+  + custom [api-gateway authorizer](https://github.com/hungrypc/serverless-boilerplate-backend/tree/master/packages/backend/lib/api-gateway-authorizer/src) lambda to handle authenticating requests
   + per service lambdas generated with configurable [`generateServerlessRestApiConfig`](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/serverless-framework/src/generate-serverless-config.ts)
 
 ## general set up
