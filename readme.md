@@ -15,10 +15,25 @@ made with (event-driven) microservice architecture in mind, iac
   + custom api-gateway authorizer lambda to handle authenticating requests
   + per service lambdas generated with configurable [`generateServerlessRestApiConfig`](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/serverless-framework/src/generate-serverless-config.ts)
 
-each service can set up:
+## general set up
+each service can create:
 1. authenticated api
+  + uses the custom authorizer lambda to determine policy based on authorization token (jwt)
 2. public api
+  + no authorizer, public can access
 3. event bridge
+  + event handler subscribed to specific event shape to pick up and process
+
+each [service's](https://github.com/hungrypc/serverless-boilerplate-backend/tree/master/packages/backend/services) api creates a [mono-lambda ](https://dev.to/aws-builders/the-what-why-and-when-of-mono-lambda-vs-single-function-apis-5cig) per api type (auth/public/ebridge), set up via [`serverless.ts`](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/services/user/serverless.ts).
+
+### basic steps with examples
+1. set up the [route endpoints](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/common/services/user/src/api-definition/public-api/routes.ts)
+  - determines path, pathParams/payload/response & its types
+2. set up the service's [controller](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/services/user/src/handlers/public-api/user-controller.ts)
+  - routes path to correct method call in executed lambda
+  - adds to `serverless.ts` [necessary configs](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/serverless-framework/src/default-config/functions/rest-api-proxy.ts)
+  - [`@Route`](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/backend-framework/src/api-definition-router/route.ts) decorator builds the actual [handler](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/backend-framework/src/api-definition-router/build-handler.ts)
+3. write [service](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/services/user/src/services/user/service.ts) logic for whatever the endpoint is intended for
 
 ## stack
 - [ts](https://www.typescriptlang.org/)
@@ -28,6 +43,7 @@ each service can set up:
 ## todo
 - remove serverless-plugin-monorepo
 - cli script to deploy all services
+- better logging
 - add testing
 - ci/cd?
 
