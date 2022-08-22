@@ -1,5 +1,5 @@
 import { APIGatewayEvent } from 'aws-lambda'
-import uuid from 'uuid'
+import { v4 } from 'uuid'
 
 import { StatusCodes, Utils } from '@app/common'
 import { isJsonParseable } from '@app/lodash'
@@ -35,7 +35,7 @@ export function buildRestApiContext(
 
   return {
     ...context,
-    correlatedRequestId: Utils.insensitiveGet(awsEvent.headers, 'X-Correlated-Request-Id') || uuid.v4(),
+    correlatedRequestId: Utils.insensitiveGet(awsEvent.headers, 'X-Correlated-Request-Id') || v4(),
     token,
     request: {
       url: awsEvent.path,
