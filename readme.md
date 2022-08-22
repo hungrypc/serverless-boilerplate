@@ -28,14 +28,15 @@ each service can create:
 
 ### basic steps with examples
 1. set up the [route endpoints](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/common/services/user/src/api-definition/public-api/routes.ts)
-    determines path, pathParams/payload/response & its types
+
+    --> determines path, pathParams/payload/response & its types
 2. set up the service's [controller](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/services/user/src/handlers/public-api/user-controller.ts)
 
-    -> routes path to correct method call in executed lambda
+    --> routes path to correct method call in executed lambda
 
-    -> adds to `serverless.ts` [necessary configs](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/serverless-framework/src/default-config/functions/rest-api-proxy.ts)
+    --> adds to `serverless.ts` [necessary configs](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/serverless-framework/src/default-config/functions/rest-api-proxy.ts)
 
-    -> [`@Route`](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/backend-framework/src/api-definition-router/route.ts) decorator builds the actual [handler](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/backend-framework/src/api-definition-router/build-handler.ts)
+    --> [`@Route`](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/backend-framework/src/api-definition-router/route.ts) decorator builds the actual [handler](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/backend-framework/src/api-definition-router/build-handler.ts)
 3. write [service](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/services/user/src/services/user/service.ts) logic for whatever the endpoint is intended for
 
 ## stack
