@@ -1,10 +1,13 @@
+import path from 'path'
+
 import { Serverless } from '../types'
 import { xRay } from './permissions/x-ray'
+const serverlessPluginDir = path.join(__dirname, '../../../serverless-plugin')
 
 export const base = ({ stage, serviceName }: { stage: string; serviceName: string }): Serverless => {
   const result: Serverless = {
     service: serviceName,
-    plugins: ['serverless-offline', 'serverless-plugin-monorepo'],
+    plugins: ['serverless-offline', serverlessPluginDir],
     frameworkVersion: '3',
     package: {
       patterns: ['!./**', 'dist/**', 'node_modules/**'],

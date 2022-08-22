@@ -70,5 +70,8 @@
     "./**/*.{js,jsx,ts,tsx}": [
       "yarn lint:fix"
     ]
+  },
+  "resolutions": {
+    "webpack": "4.42.0"
   }
 }

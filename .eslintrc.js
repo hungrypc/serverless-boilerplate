@@ -1,5 +1,12 @@
 module.exports = {
-  ignorePatterns: ['node_modules', '**/dist/**/*', '**/build/**/*', '**/.serverless/**/*', '**/cdk.out/**/*'],
+  ignorePatterns: [
+    'node_modules',
+    '**/dist/**/*',
+    '**/build/**/*',
+    '**/serverless-plugin/**/*',
+    '**/.serverless/**/*',
+    '**/cdk.out/**/*',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2020,

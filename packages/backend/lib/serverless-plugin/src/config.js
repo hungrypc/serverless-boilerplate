@@ -1,0 +1,22 @@
+module.exports = {
+  servicePath: '',
+  nodeVersion: null,
+  options: {
+    aliases: [],
+    stats: false,
+    caching: true,
+    fixPackages: ['formidable@2.x'],
+    packager: 'npm',
+    copyFiles: null,
+    concatText: null,
+    sourcemaps: true,
+    forceInclude: null,
+    excludeFiles: null,
+    ignorePackages: [],
+    packagerOptions: {},
+    tsConfig: 'tsconfig.json',
+    forceExclude: ['aws-sdk'],
+    externals: ['knex', 'sharp'],
+    rawFileExtensions: ['pem', 'txt'],
+  },
+}

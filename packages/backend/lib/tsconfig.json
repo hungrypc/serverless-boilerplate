@@ -6,6 +6,7 @@
     { "path": "./backend-framework" },
     { "path": "./serverless-framework" },
     { "path": "./serverless-function" },
+    { "path": "./serverless-plugin" },
     { "path": "./serverless-rest-api-router" }
   ]
 }
