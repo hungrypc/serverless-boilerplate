@@ -14,7 +14,7 @@ export class UserController extends Controller {
   }
 
   @Route(routes.testAuthApi)
-  async testApi({ payload: { userId } }: Args<typeof routes.testAuthApi>) {
-    return this.service.testApi({ userId, api: 'auth' })
+  async testAuthApi({ payload: { userId } }: Args<typeof routes.testAuthApi>) {
+    return this.service.testAuthApi({ userId })
   }
 }

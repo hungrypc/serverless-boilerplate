@@ -24,7 +24,7 @@ each service can create:
 - event bridge
   + event handler subscribed to specific event shape to pick up and process
 
-> each [service's](https://github.com/hungrypc/serverless-boilerplate-backend/tree/master/packages/backend/services) api creates a [mono-lambda ](https://dev.to/aws-builders/the-what-why-and-when-of-mono-lambda-vs-single-function-apis-5cig) per api type (auth/public/ebridge), set up via [`serverless.ts`](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/services/user/serverless.ts).
+> each [service](https://github.com/hungrypc/serverless-boilerplate-backend/tree/master/packages/backend/services) creates a [mono-lambda ](https://dev.to/aws-builders/the-what-why-and-when-of-mono-lambda-vs-single-function-apis-5cig) per api type (auth/public/ebridge), set up via [`serverless.ts`](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/services/user/serverless.ts).
 
 ### basic steps with examples
 1. set up the [route endpoints](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/common/services/user/src/api-definition/public-api/routes.ts)
@@ -45,14 +45,14 @@ each service can create:
 - [serverless](https://www.serverless.com/)
 
 ## todo
+- set up param store, replace env var in jwt client
+- better logging sys
 - remove serverless-plugin-monorepo
-- cli script to deploy all services
-- better logging
+- cli script to deploy all service
 - add testing
 - ci/cd?
 
 ## notes
-- ssm paramstore
 - using serverless-webpack to optimize lambda packages
   + custom plugin, pkg-up and webpack @ specific versions, build first
 - because main domain is currently hosted on vercel, had to add CNAME dns record for api route on vercel to fix dns resolution issues

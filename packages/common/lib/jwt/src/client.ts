@@ -11,7 +11,7 @@ class InvalidAuthorizationToken extends BaseError {
 export type JwtClient = ReturnType<typeof jwtClient>
 
 export const jwtClient = () => {
-  const privateKey = process.env.JWT_SECRET
+  const privateKey = process.env.JWT_SECRET_KEY
 
   return {
     sign: (data: object) => {
