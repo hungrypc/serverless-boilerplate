@@ -8,7 +8,7 @@ export default class PayloadValidationError extends BaseError {
   }
 }
 
-export async function handlePayloadValidationError(ctx: RestApiContext, next: Function): Promise<void> {
+export async function handlePayloadValidationError(_: RestApiContext, next: Function): Promise<void> {
   try {
     await next()
   } catch (error) {

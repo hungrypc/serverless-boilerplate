@@ -9,27 +9,37 @@ import { BasePolicy, generateBasePolicy } from './api-gateway-policy'
 
 export interface ApiGatewayPolicy extends BasePolicy {}
 
-export const generatePolicy = (effect: string) => {
+export const generatePolicy = (effect: string): ApiGatewayPolicy => {
   return {
     ...generateBasePolicy(effect),
-    principalId: 'a',
+    principalId: 'abc',
   }
 }
 
 export const verifyAuthenticationAndGetPolicy = async (
   context: InvocationContext<APIGatewayRequestAuthorizerEvent>,
 ): Promise<ApiGatewayPolicy> => {
+  const logger = Logger(context)
+  const jwt = jwtClient()
+
   const headerToken = headerManager.authorizationBearer.parse(context.awsEvent.headers)
   const queryStringToken = context.awsEvent.queryStringParameters?.authToken
 
+  let policy = 'Deny'
   try {
-    const parsed = jwtClient().verify(headerToken ?? queryStringToken)
-
+    const parsed = jwt.verify(headerToken ?? queryStringToken)
     if (parsed) {
-      return generatePolicy('Allow')
+      logger.info('Token is valid', { parsed })
+      policy = 'Allow'
     }
   } catch (error) {
-    Logger(context).error('Invalid token', { error })
-    return generatePolicy('Deny')
+    if (error.name === 'InvalidAuthorizationToken') {
+      logger.warning('Token is invalid, dont let this mf in')
+    } else {
+      logger.error('Could not verify token due to an unexpected error:', { error })
+    }
   }
+
+  logger.info(`Generating policy: ${policy}`)
+  return generatePolicy(policy)
 }

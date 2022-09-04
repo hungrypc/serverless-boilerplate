@@ -5,6 +5,7 @@ export interface Statement {
 }
 
 export interface BasePolicy {
+  principalId?: string
   policyDocument: {
     Version: '2012-10-17'
     Statement: Statement[]
