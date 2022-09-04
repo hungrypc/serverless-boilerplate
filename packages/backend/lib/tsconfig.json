@@ -4,6 +4,7 @@
   "references": [
     { "path": "./api-gateway-authorizer" },
     { "path": "./backend-framework" },
+    { "path": "./logger" },
     { "path": "./serverless-framework" },
     { "path": "./serverless-function" },
     { "path": "./serverless-plugin" },

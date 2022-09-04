@@ -1,4 +1,5 @@
 export { RestApiContext } from '@app/serverless-rest-api-router'
+export { Logger } from '@app/logger'
 
 export * from './api-definition'
 export * from './api-definition-router'

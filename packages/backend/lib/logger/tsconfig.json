@@ -8,9 +8,5 @@
   "include": ["src"],
   "references": [
     { "path": "../../../common/lib/common" },
-    { "path": "../../../common/lib/ts-utils" },
-    { "path": "../../../common/lib/yup-util" },
-    { "path": "../logger" },
-    { "path": "../serverless-rest-api-router" },
   ]
 }

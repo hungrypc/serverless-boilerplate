@@ -1,7 +1,7 @@
 import { Context } from '@app/common'
 
 export interface Middleware<T extends Context = Context> {
-  (ctx: T, next: () => void): Promise<void>
+  (context: T, next: () => void): Promise<void>
 }
 
 export function composeMiddlewares(middlewares: Middleware[]): (context: Context, next?: Middleware) => Promise<void> {

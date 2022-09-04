@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@app/jwt": "1.0.0",
+    "@app/logger": "1.0.0",
     "@app/serverless-function": "1.0.0",
     "@app/serverless-framework": "1.0.0",
     "aws-lambda": "^1.0.7"

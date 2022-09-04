@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@app/common": "1.0.0",
+    "@app/logger": "1.0.0",
     "@app/serverless-rest-api-router": "1.0.0",
     "@app/ts-utils": "1.0.0",
     "@app/yup-util": "1.0.0"

@@ -55,4 +55,5 @@ each service can create:
 ## notes
 - using serverless-webpack to optimize lambda packages
   + custom plugin, pkg-up and webpack @ specific versions, build first
+  + [serverless-bundle](https://github.com/AnomalyInnovations/serverless-bundle)?
 - because main domain is currently hosted on vercel, had to add CNAME dns record for api route on vercel to fix dns resolution issues
