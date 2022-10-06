@@ -11,7 +11,7 @@ import { DeploymentBucket } from './s3-bucket'
 export class IacStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, context: Context) {
     super(scope, id, { env: { region: context.region, account: context.account } })
-    const config = getConfig()
+    const config = getConfig(context.stage)
 
     const { domainName } = config
 

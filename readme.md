@@ -45,12 +45,12 @@ each service can create:
 - [serverless](https://www.serverless.com/)
 
 ## todo
-- set up param store, replace env var in jwt client
-- better logging sys
-- remove serverless-plugin-monorepo
-- cli script to deploy all service
-- add testing
-- ci/cd?
+- delete old stacks and remove resources, replace with new stack
+- cloudfront cdn for assets
+- set up param store, jwt client keys
+- cli script -> deploy all service
+- testing
+- ci/cd
 
 ## notes
 - using serverless-webpack to optimize lambda packages

@@ -18,7 +18,7 @@ const serverlessConfig = generateServerlessRestApiConfig({
               [
                 'arn:aws:apigateway:us-east-1:lambda:path/',
                 '2015-03-31/functions/',
-                'arn:aws:lambda:us-east-1:${env:AWS_PERSONAL_ACCOUNT_ID}:function:${self:custom.stage}-${self:service}',
+                'arn:aws:lambda:us-east-1:${env:AWS_ACCOUNT_ID}:function:${self:custom.stage}-${self:service}',
                 '/invocations',
               ],
             ],

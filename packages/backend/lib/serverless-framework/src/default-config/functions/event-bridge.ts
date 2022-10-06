@@ -21,7 +21,7 @@ export const eventBridgeFunction = ({
       handler,
       events: eventTypes.map(({ context, entity, type }) => ({
         eventBridge: {
-          eventBus: 'arn:aws:events:us-east-1:872896368880:event-bus/${self:custom.stage}',
+          eventBus: 'arn:aws:events:us-east-1:${env:AWS_ACCOUNT_ID}:event-bus/${self:custom.stage}',
           pattern: {
             detail: {
               context: isArray(context) ? context : [context],

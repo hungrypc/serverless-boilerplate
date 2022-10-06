@@ -7,11 +7,19 @@ export class HostedZone extends cdk.Construct {
   constructor(scope: cdk.Construct, id: string, context: { stage: string }, { domainName }: { domainName: string }) {
     super(scope, id)
 
-    this.hostedZone = route53.HostedZone.fromLookup(this, 'hosted-zone', { domainName })
+    this.hostedZone =
+      context.stage === 'production'
+        ? route53.HostedZone.fromLookup(this, 'hosted-zone', { domainName })
+        : new route53.HostedZone(this, 'hosted-zone', { zoneName: domainName })
 
     new cdk.CfnOutput(scope, `${context.stage}-domain-name`, {
       exportName: `${context.stage}-domain-name`,
       value: domainName,
+    })
+
+    new cdk.CfnOutput(this, `${context.stage}-hosted-zone-id`, {
+      exportName: `${context.stage}-hosted-zone-id`,
+      value: this.hostedZone.hostedZoneId,
     })
   }
 }

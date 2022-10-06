@@ -29,17 +29,16 @@ export const verifyAuthenticationAndGetPolicy = async (
   try {
     const parsed = jwt.verify(headerToken ?? queryStringToken)
     if (parsed) {
-      logger.info('Token is valid', { parsed })
+      logger.info('Valid token', { parsed })
       policy = 'Allow'
     }
   } catch (error) {
     if (error.name === 'InvalidAuthorizationToken') {
-      logger.warning('Token is invalid, dont let this mf in')
+      logger.warning('Invalid authorization')
     } else {
       logger.error('Could not verify token due to an unexpected error:', { error })
     }
   }
 
-  logger.info(`Generating policy: ${policy}`)
   return generatePolicy(policy)
 }
