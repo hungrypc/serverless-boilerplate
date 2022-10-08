@@ -16,7 +16,12 @@ export type ObjectReturnType<T extends (...args: any) => any, K extends keyof St
 export type Unpacked<T> = T extends (infer U)[] ? U : T
 
 export type Modify<T, R> = Omit<T, keyof R> & R
+export type Mutable<T> = { -readonly [P in keyof T]: T[P] }
 
 export type OmitNeverPropertyNames<T> = { [K in keyof T]: T[K] extends never ? never : K }[keyof T]
 export type OmitNeverPick<T> = Pick<T, OmitNeverPropertyNames<T>>
 export type StrictOmitNeverPick<T> = OmitNeverPropertyNames<T> extends never ? never : OmitNeverPick<T>
+
+export type TupleUnion<U extends string, R extends any[] = []> = {
+  [S in U]: Exclude<U, S> extends never ? [...R, S] : TupleUnion<Exclude<U, S>, [...R, S]>
+}[U]

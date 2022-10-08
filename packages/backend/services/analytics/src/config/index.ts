@@ -1,4 +1,4 @@
-import { config as baseConfig } from '@app/user-shared'
+import { config as baseConfig } from '@app/analytics-shared'
 
 export const config = {
   stage: baseConfig.stage,

@@ -1,3 +1,4 @@
+export { Context } from '@app/common'
 export { RestApiContext } from '@app/serverless-rest-api-router'
 export { Logger } from '@app/logger'
 

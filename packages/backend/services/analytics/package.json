@@ -1,0 +1,20 @@
+{
+  "name": "@app/analytics-service",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -b .",
+    "build:clean": "rm -rf ./dist && yarn build",
+    "deploy": "serverless deploy --aws-profile personalAdmin --stage=${STAGE}",
+    "predeploy": "yarn build",
+    "start": "serverless offline start --stage=${STAGE} --httpPort 5000"
+  },
+  "dependencies": {
+    "@app/backend-framework": "1.0.0",
+    "@app/analytics-shared": "1.0.0"
+  }
+}
