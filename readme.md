@@ -1,5 +1,7 @@
 # serverless boilerplate
 
+currently set up for personal use
+
 - iac
 - event-driven microservice architecture
 - monorepo, service-specific packages, organized by 3 main categories
@@ -9,7 +11,6 @@
     - entity
   + ui
 
-currently set up for personal use rn
 ## stack
 - [ts](https://www.typescriptlang.org/)
 - [aws-cdk](https://github.com/aws/aws-cdk)
@@ -29,15 +30,15 @@ currently set up for personal use rn
   + cloudfront cdn for assets
   + store site analytics
 
-# notes
-## backend
+# backend notes
 
 - aws-cdk to build [initial infrastructure](https://github.com/hungrypc/serverless-boilerplate/blob/master/packages/backend/infrastructure/iac/lib/iac-stack.ts)
   + event bus
   + s3 deployment bucket
-  + rest api on api-gateway with custom domain name mapped
-    - creates new A record for api domain, uses custom domain certificate (should be previously set up)
-- after which, can use serverless to deploy per service lambdas generated with configurable [`generateServerlessRestApiConfig`](https://github.com/hungrypc/serverless-boilerplate/blob/master/packages/backend/lib/serverless-framework/src/generate-serverless-config.ts)
+  + ssm param store for shared config values
+  + rest api on api-gateway using custom domain
+    - creates new A record for api domain, uses custom domain certificate (must be previously set up)
+- after which, use serverless to deploy per service lambdas generated with configurable [`generateServerlessRestApiConfig`](https://github.com/hungrypc/serverless-boilerplate/blob/master/packages/backend/lib/serverless-framework/src/generate-serverless-config.ts)
 
 
 each service creates a [mono-lambda ](https://dev.to/aws-builders/the-what-why-and-when-of-mono-lambda-vs-single-function-apis-5cig) per api-type:
@@ -48,16 +49,16 @@ each service creates a [mono-lambda ](https://dev.to/aws-builders/the-what-why-a
 - event bridge
   + event handler subscribed to specific event shape to pick up and process
 
-### interfaces / example
+## interfaces / example
 1. api definition
-  + [routes](https://github.com/hungrypc/serverless-boilerplate/blob/master/packages/common/services/analytics/src/api-definition/public-api/routes.ts) - determines path, pathParams/payload/response
+    + [routes](https://github.com/hungrypc/serverless-boilerplate/blob/master/packages/common/services/analytics/src/api-definition/public-api/routes.ts) - determines path, pathParams/payload/response
 2. [controller](https://github.com/hungrypc/serverless-boilerplate/blob/master/packages/backend/services/analytics/src/handlers/public-api/analytics-controller.ts)
-  + directs request to correct method call in executed lambda
+    + directs request to correct method call in executed lambda
 3. [service](https://github.com/hungrypc/serverless-boilerplate/blob/master/packages/backend/services/analytics/src/services/analytics/service.ts) logic for whatever the endpoint is intended for
 
-## common
+# common notes
 
-## ui
+# ui notes
 
 # misc notes
 - using serverless-webpack to optimize lambda packages
