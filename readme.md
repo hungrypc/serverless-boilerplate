@@ -1,59 +1,65 @@
-# serverless boilerplate: backend
+# serverless boilerplate
 
-personal monorepo boilerplate, but only the backend impl. here (+ common folder to share types between FE and BE if FE is added in later on)
+- iac
+- event-driven microservice architecture
+- monorepo, service-specific packages, organized by 3 main categories
+  + backend
+  + common (shared b/t be and fe)
+    - api-definition
+    - entity
+  + ui
 
-used to set up an api (currently for personal use rn so everything is set up to play around with on my own domain)
-
-made with (event-driven) microservice architecture in mind, iac
-
-- using aws-cdk to first build [initial infrastructure](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/infrastructure/iac/lib/iac-stack.ts)
-  + creates event bus
-  + creates s3 deployment bucket
-  + sets up rest api on api-gateway with custom domain name mapped
-    - creates new A record for api domain, uses custom domain certificate (should be previously set up)
-- then using serverless to deploy:
-  + custom [api-gateway authorizer](https://github.com/hungrypc/serverless-boilerplate-backend/tree/master/packages/backend/lib/api-gateway-authorizer/src) lambda to handle authenticating requests
-  + per service lambdas generated with configurable [`generateServerlessRestApiConfig`](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/serverless-framework/src/generate-serverless-config.ts)
-
-## general set up
-each service can create:
-- authenticated api
-  + uses the custom authorizer lambda to determine policy based on authorization token (jwt)
-- public api
-  + no authorizer, public can access
-- event bridge
-  + event handler subscribed to specific event shape to pick up and process
-
-> each [service](https://github.com/hungrypc/serverless-boilerplate-backend/tree/master/packages/backend/services) creates a [mono-lambda ](https://dev.to/aws-builders/the-what-why-and-when-of-mono-lambda-vs-single-function-apis-5cig) per api type (auth/public/ebridge), set up via [`serverless.ts`](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/services/user/serverless.ts).
-
-### basic steps with examples
-1. set up the [route endpoints](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/common/services/user/src/api-definition/public-api/routes.ts)
-
-    --> determines path, pathParams/payload/response & its types
-2. set up the service's [controller](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/services/user/src/handlers/public-api/user-controller.ts)
-
-    --> routes path to correct method call in executed lambda
-
-    --> adds to `serverless.ts` [necessary configs](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/serverless-framework/src/default-config/functions/rest-api-proxy.ts)
-
-    --> [`@Route`](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/backend-framework/src/api-definition-router/route.ts) decorator builds the actual [handler](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/lib/backend-framework/src/api-definition-router/build-handler.ts)
-3. write [service](https://github.com/hungrypc/serverless-boilerplate-backend/blob/master/packages/backend/services/user/src/services/user/service.ts) logic for whatever the endpoint is intended for
-
+currently set up for personal use rn
 ## stack
 - [ts](https://www.typescriptlang.org/)
 - [aws-cdk](https://github.com/aws/aws-cdk)
 - [serverless](https://www.serverless.com/)
 
 ## todo
-- delete old stacks and remove resources, replace with new stack
-- db, record analytics
-- cloudfront cdn for assets
-- set up param store, jwt client keys
-- cli script -> deploy all service
-- testing
-- ci/cd
+- backend:
+  + db set ups
+- frontend:
+  + ssr app cdn
+  + frameworks
+- overall:
+  + cli script -> deploy all service
+  + testing
+  + ci/cd
+- personal:
+  + cloudfront cdn for assets
+  + store site analytics
 
-## notes
+# notes
+## backend
+
+- aws-cdk to build [initial infrastructure](https://github.com/hungrypc/serverless-boilerplate/blob/master/packages/backend/infrastructure/iac/lib/iac-stack.ts)
+  + event bus
+  + s3 deployment bucket
+  + rest api on api-gateway with custom domain name mapped
+    - creates new A record for api domain, uses custom domain certificate (should be previously set up)
+- after which, can use serverless to deploy per service lambdas generated with configurable [`generateServerlessRestApiConfig`](https://github.com/hungrypc/serverless-boilerplate/blob/master/packages/backend/lib/serverless-framework/src/generate-serverless-config.ts)
+
+
+each service creates a [mono-lambda ](https://dev.to/aws-builders/the-what-why-and-when-of-mono-lambda-vs-single-function-apis-5cig) per api-type:
+- authenticated api
+  + uses the custom [api-gateway authorizer](https://github.com/hungrypc/serverless-boilerplate/tree/master/packages/backend/api-gateway-authorizer) lambda to handle authenticating requests
+- public api
+  + no authorizer, public can access
+- event bridge
+  + event handler subscribed to specific event shape to pick up and process
+
+### interfaces / example
+1. api definition
+  + [routes](https://github.com/hungrypc/serverless-boilerplate/blob/master/packages/common/services/analytics/src/api-definition/public-api/routes.ts) - determines path, pathParams/payload/response
+2. [controller](https://github.com/hungrypc/serverless-boilerplate/blob/master/packages/backend/services/analytics/src/handlers/public-api/analytics-controller.ts)
+  + directs request to correct method call in executed lambda
+3. [service](https://github.com/hungrypc/serverless-boilerplate/blob/master/packages/backend/services/analytics/src/services/analytics/service.ts) logic for whatever the endpoint is intended for
+
+## common
+
+## ui
+
+# misc notes
 - using serverless-webpack to optimize lambda packages
   + custom plugin, pkg-up and webpack @ specific versions, build first
   + [serverless-bundle](https://github.com/AnomalyInnovations/serverless-bundle)?
