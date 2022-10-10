@@ -5,7 +5,8 @@ export enum AnalyticEventType {
 export type AnalyticEvent = {
   domain: string
   eventType: AnalyticEventType
-  referer: string
+  referrer: string
   url: string
   clientWidth: number
+  createdAt: string
 }

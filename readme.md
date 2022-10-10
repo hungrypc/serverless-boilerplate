@@ -46,6 +46,7 @@ each service can create:
 
 ## todo
 - delete old stacks and remove resources, replace with new stack
+- db, record analytics
 - cloudfront cdn for assets
 - set up param store, jwt client keys
 - cli script -> deploy all service

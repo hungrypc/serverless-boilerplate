@@ -23,7 +23,6 @@ _serverless*
 # misc
 .DS_Store
 .eslintcache
-globalConfig.json
 yarn-error.log
 
 .vscode/*

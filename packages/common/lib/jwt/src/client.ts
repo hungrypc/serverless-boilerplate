@@ -1,6 +1,7 @@
 import { sign, verify } from 'jsonwebtoken'
 
-import { BaseError, StatusCodes } from '@app/common'
+import { BaseError, Context, StatusCodes } from '@app/common'
+import { ConfigManager } from '@app/config-manager'
 
 class InvalidAuthorizationToken extends BaseError {
   constructor() {
@@ -8,10 +9,10 @@ class InvalidAuthorizationToken extends BaseError {
   }
 }
 
-export type JwtClient = ReturnType<typeof jwtClient>
+export type JwtClient = ReturnType<typeof JwtClient>
 
-export const jwtClient = () => {
-  const privateKey = process.env.JWT_SECRET_KEY
+export const JwtClient = async (context: Context) => {
+  const privateKey = await ConfigManager(context).get('JWT_SECRET_KEY')
 
   return {
     sign: (data: object) => {

@@ -8,6 +8,7 @@ export const getConfig = (stage: string) => {
     apiGateway: {
       restApiDomainName: `api.${stage}.${BASE_DOMAIN}`,
     },
+    mongoUrl: null as unknown as string,
   }
 
   switch (stage) {

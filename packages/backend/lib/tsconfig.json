@@ -2,8 +2,8 @@
   "extends": "../../../tsconfig.json",
   "files": [],
   "references": [
-    { "path": "./api-gateway-authorizer" },
     { "path": "./backend-framework" },
+    { "path": "./config-manager" },
     { "path": "./logger" },
     { "path": "./serverless-framework" },
     { "path": "./serverless-function" },

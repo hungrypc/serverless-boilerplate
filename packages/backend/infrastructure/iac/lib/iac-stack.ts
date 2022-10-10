@@ -7,6 +7,7 @@ import { EventBus } from './event-bus'
 import { HostedZone } from './hosted-zone'
 import { RestApi } from './rest-api'
 import { DeploymentBucket } from './s3-bucket'
+import { SSMConfig } from './ssm-config'
 
 export class IacStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, context: Context) {
@@ -26,5 +27,7 @@ export class IacStack extends cdk.Stack {
       domainName: config.apiGateway.restApiDomainName,
       apiPrefix: config.apiPrefix,
     })
+
+    new SSMConfig(this, 'ssm-config', context)
   }
 }

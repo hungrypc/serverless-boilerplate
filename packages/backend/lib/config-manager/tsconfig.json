@@ -3,10 +3,13 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",
+    "strictNullChecks": true,
     "composite": true
   },
   "include": ["src"],
   "references": [
-    { "path": "../../../common/lib/global-config"}
+    { "path": "../../../common/lib/common" },
+    { "path": "../../../common/lib/global-config" },
+    { "path": "../logger" },
   ]
 }

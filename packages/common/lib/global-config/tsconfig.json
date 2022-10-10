@@ -3,10 +3,9 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",
+    "strict": true,
     "composite": true
   },
   "include": ["src"],
-  "references": [
-    { "path": "../../../common/lib/global-config"}
-  ]
+  "references": []
 }

@@ -1,7 +1,7 @@
 import { APIGatewayRequestAuthorizerEvent } from 'aws-lambda'
 
 import { headerManager } from '@app/common'
-import { jwtClient } from '@app/jwt'
+import { JwtClient } from '@app/jwt'
 import { Logger } from '@app/logger'
 import { InvocationContext } from '@app/serverless-function'
 
@@ -20,7 +20,7 @@ export const verifyAuthenticationAndGetPolicy = async (
   context: InvocationContext<APIGatewayRequestAuthorizerEvent>,
 ): Promise<ApiGatewayPolicy> => {
   const logger = Logger(context)
-  const jwt = jwtClient()
+  const jwt = await JwtClient(context)
 
   const headerToken = headerManager.authorizationBearer.parse(context.awsEvent.headers)
   const queryStringToken = context.awsEvent.queryStringParameters?.authToken

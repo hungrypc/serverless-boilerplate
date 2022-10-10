@@ -14,7 +14,7 @@ if (!STAGE) {
 }
 
 const SERVICE_FULL_NAME = `${STAGE}-${SERVICE_BASE_NAME}`
-const STACK_NAME = SERVICE_BASE_NAME
+const STACK_NAME = STAGE === 'production' ? SERVICE_BASE_NAME : `${STAGE}-${SERVICE_BASE_NAME}`
 
 const context: Context = {
   stage: app.node.tryGetContext('stage') || '',

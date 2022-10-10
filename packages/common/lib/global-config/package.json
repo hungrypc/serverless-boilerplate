@@ -1,5 +1,5 @@
 {
-  "name": "@app/jwt",
+  "name": "@app/global-config",
   "version": "1.0.0",
   "main": "dist/index.js",
   "files": [
@@ -9,9 +9,5 @@
   "scripts": {
     "build": "tsc -b ."
   },
-  "dependencies": {
-    "@app/common": "1.0.0",
-    "@app/config-manager": "1.0.0",
-    "jsonwebtoken": "^8.5.1"
-  }
+  "dependencies": {}
 }

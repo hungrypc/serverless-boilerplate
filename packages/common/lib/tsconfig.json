@@ -3,6 +3,7 @@
   "files": [],
   "references": [
     { "path": "./common" },
+    { "path": "./global-config" },
     { "path": "./jwt" },
     { "path": "./lodash" },
     { "path": "./ts-utils" },

@@ -1,17 +1,18 @@
 {
-  "name": "@app/jwt",
+  "name": "@app/config-manager",
   "version": "1.0.0",
+  "license": "MIT",
   "main": "dist/index.js",
   "files": [
     "dist"
   ],
-  "license": "MIT",
   "scripts": {
     "build": "tsc -b ."
   },
   "dependencies": {
     "@app/common": "1.0.0",
-    "@app/config-manager": "1.0.0",
-    "jsonwebtoken": "^8.5.1"
+    "@app/global-config": "1.0.0",
+    "@app/logger": "1.0.0",
+    "aws-sdk": "^2.1189.0"
   }
 }

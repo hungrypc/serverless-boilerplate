@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "predeploy:iac": "cdk --version && cdk --profile=personalAdmin bootstrap aws://$AWS_PERSONAL_ACCOUNT_ID/us-east-1 --context stage=$STAGE",
-    "deploy:iac": "cdk deploy --profile=personalAdmin --require-approval never --context stage=$STAGE"
+    "predeploy:iac": "cdk --version && cdk --profile=$AWS_PROFILE bootstrap aws://$AWS_ACCOUNT_ID/us-east-1 --context stage=$STAGE",
+    "deploy:iac": "cdk deploy --profile=$AWS_PROFILE --require-approval never --context stage=$STAGE"
   },
   "dependencies": {
     "@aws-cdk/assert": "^2.36.0",
@@ -15,6 +15,7 @@
     "@aws-cdk/aws-route53-targets": "^1.167.0",
     "@aws-cdk/aws-s3": "^1.167.0",
     "@aws-cdk/aws-s3-deployment": "^1.167.0",
-    "@aws-cdk/core": "^1.167.0"
+    "@aws-cdk/core": "^1.167.0",
+    "@app/global-config": "1.0.0"
   }
 }

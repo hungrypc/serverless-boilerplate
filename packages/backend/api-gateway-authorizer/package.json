@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc -b .",
     "predeploy": "yarn build",
-    "deploy": "serverless deploy --aws-profile personalAdmin --stage=${STAGE}",
+    "deploy": "serverless deploy --aws-profile $AWS_PROFILE --stage=${STAGE}",
     "prestart": "yarn build",
     "start": "cli serverless offline start --stage=${STAGE} --httpPort 5000"
   },

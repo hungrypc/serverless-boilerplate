@@ -32,7 +32,7 @@ export const base = ({ stage, serviceName }: { stage: string; serviceName: strin
       stackName: `${stage}-${serviceName}`,
       apiName: `${stage}-${serviceName}`,
       deploymentBucket: {
-        name: `app-${stage}-deployment`,
+        name: `philip-chan-${stage}-deployment`,
       },
       environment: {
         STAGE: stage,
