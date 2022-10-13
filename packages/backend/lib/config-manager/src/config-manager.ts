@@ -12,6 +12,7 @@ let expiredAt: number
 
 export function ConfigManager(context: Context) {
   const client = new SSMClient(context)
+  const logger = client.logger
 
   const cachedParametersAreExpired = (): boolean => {
     return !expiredAt || expiredAt < Date.now()
@@ -34,7 +35,7 @@ export function ConfigManager(context: Context) {
   }
 
   const getParameter = async (key: string): Promise<Parameter | undefined> => {
-    const defaultConfig = context?.config?.environmentVariables || {}
+    const defaultConfig = context.config?.environmentVariables || {}
 
     if (defaultConfig[key] && typeof defaultConfig[key] === 'string') {
       return {
@@ -65,12 +66,9 @@ export function ConfigManager(context: Context) {
 
       if (parameter.type !== 'SecureString') {
         !context.silent &&
-          client.logger.debug(
-            `Found parameter for ${key as string} from ${parameter.from} with value ${parameter.value}`,
-          )
+          logger.debug(`Found parameter for ${key as string} from ${parameter.from} with value ${parameter.value}`)
       } else {
-        !context.silent &&
-          client.logger.debug(`Found parameter for ${key as string} from ${parameter.from} with value HIDDEN`)
+        !context.silent && logger.debug(`Found parameter for ${key as string} from ${parameter.from} with value HIDDEN`)
       }
 
       if (IS_JSON_LIKE_REGEX.test(parameter.value)) {

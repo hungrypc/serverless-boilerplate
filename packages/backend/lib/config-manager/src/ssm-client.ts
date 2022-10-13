@@ -5,7 +5,14 @@ import { Logger } from '@app/logger'
 
 import { Context, Parameters } from './types'
 
-export class SSMClient {
+export interface SSMClientType {
+  putParameter: (
+    params: AWS.SSM.PutParameterRequest,
+  ) => Promise<PromiseResult<AWS.SSM.PutParameterResult, AWS.AWSError>>
+  fetchParametersByPath: (startWith: string) => Promise<Parameters>
+}
+
+export class SSMClient implements SSMClientType {
   private client: AWS.SSM
   private context: Context
   public logger: Logger

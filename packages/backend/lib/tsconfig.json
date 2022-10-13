@@ -5,6 +5,7 @@
     { "path": "./backend-framework" },
     { "path": "./config-manager" },
     { "path": "./logger" },
+    { "path": "./mongoose" },
     { "path": "./serverless-framework" },
     { "path": "./serverless-function" },
     { "path": "./serverless-plugin" },
